@@ -65,13 +65,7 @@ const HeaderTasks: React.FC = () => {
         <Notification />
         <BtnAddTask className="sm:static fixed bottom-3 right-3 z-10 sm:z-0 min-w-max shadow-lg shadow-slate-400  dark:shadow-slate-900 sm:shadow-transparent" />
 
-        <button onClick={openMenuAccountHandler} className="block xl:hidden">
-          <img
-            src={avatar1}
-            alt="cat"
-            className="w-10 h-10 rounded-full ml-4"
-          />
-        </button>
+       
       </div>
     </header>
   );
