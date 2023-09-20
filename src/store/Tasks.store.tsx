@@ -11,8 +11,8 @@ const defaultTasks: Task[] = [
   {
     title: "Tarea 1",
     important: true,
-    description: "Esta es la descripción de esta tarea",
-    date: "2023-05-15",
+    description: "Hacer el proyecto para aplicaciones de escritorio",
+    date: "2023-09-20",
     dir: "Principal",
     completed: true,
     id: "t2",
@@ -21,8 +21,8 @@ const defaultTasks: Task[] = [
   {
     title: "Tarea 2",
     important: false,
-    description: "Esta es la descripción de esta tarea",
-    date: "2023-08-21",
+    description: "Taller de infraestructura",
+    date: "2023-09-21",
     dir: "Principal",
     completed: false,
     id: "t3",
