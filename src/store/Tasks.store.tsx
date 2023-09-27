@@ -5,7 +5,9 @@ import {
   MiddlewareAPI,
   PayloadAction,
 } from "@reduxjs/toolkit";
+import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import { Task } from "../interfaces";
+import { db } from "../services/app";
 
 const defaultTasks: Task[] = [
   {
@@ -28,6 +30,7 @@ const defaultTasks: Task[] = [
     id: "t3",
   },
 ];
+
 
 const getSavedDirectories = (): string[] => {
   let dirList: string[] = [];
@@ -66,12 +69,36 @@ const initialState: {
   directories: getSavedDirectories(),
 };
 
+
+const getProduct = async() => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'task'));
+    querySnapshot.forEach((doc: any) => {
+      initialState.tasks.push({ ...doc.data(), id: doc.id });
+    });
+  } catch (error) {
+  }
+}
+getProduct();
+
 const tasksSlice = createSlice({
   name: "tareas",
   initialState: initialState,
   reducers: {
     addNewTask(state, action: PayloadAction<Task>) {
-      state.tasks = [action.payload, ...state.tasks];
+     state.tasks = [action.payload, ...state.tasks];
+     
+     const createTask = async ()  => {
+      try {
+        const docRef = await addDoc(collection(db, "task"), action.payload);
+        console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+     }
+
+     createTask()
+
     },
     removeTask(state, action) {
       const newTasksList = state.tasks.filter(
